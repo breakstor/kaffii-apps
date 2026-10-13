@@ -19,6 +19,20 @@ main{padding:10px 0 42px}.category{margin:25px 0 34px;scroll-margin-top:18px}.he
 .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;align-items:stretch}.card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:19px;box-shadow:var(--shadow);display:flex;flex-direction:column;min-width:0;transition:transform .2s,box-shadow .2s}.card:hover{transform:translateY(-2px);box-shadow:0 13px 30px rgba(39,52,71,.11)}
 .app-top{display:flex;align-items:center;gap:12px;min-width:0}.app-icon{width:70px;height:70px;flex:0 0 70px;object-fit:cover;border:1px solid var(--line);border-radius:17px;background:#f2f2f4}.app-top>div{min-width:0}.app-title{font-size:19px;line-height:1.4;font-weight:900;margin:0;overflow-wrap:anywhere}.app-type{font-size:13px;color:var(--brand);font-weight:800;margin-top:4px}.desc{color:var(--muted);font-size:15px;line-height:1.8;margin:14px 0 18px;flex:1}.button{width:100%;min-height:48px;padding:11px 14px;text-align:center;font-size:15px;line-height:1.45}.button svg{width:18px;height:18px;flex:0 0 18px}
 .cta{margin-top:38px;padding:36px 22px;text-align:center;background:var(--ink);color:#fff;border-radius:24px}.cta h2{font-size:clamp(25px,4vw,36px);line-height:1.35;font-weight:900;margin:0}.cta p{color:#d9dee5;max-width:620px;margin:10px auto 21px}.cta .button{width:auto;min-width:220px;padding-inline:24px}footer{text-align:center;color:var(--muted);font-size:13px;padding:22px 12px 28px}
+
+/* سلايدر الإعلانات بين قائمة الأقسام وتصنيفات المتاجر */
+.ad-slider{position:relative;margin:18px auto 24px;overflow:hidden;border-radius:18px;background:#eee;box-shadow:var(--shadow);isolation:isolate}
+.ad-slider-track{display:flex;direction:ltr;transition:transform .55s ease;will-change:transform}
+.ad-slide{display:block;flex:0 0 100%;width:100%;aspect-ratio:16/9;overflow:hidden}
+.ad-slide img{display:block;width:100%;height:100%;object-fit:cover}
+.ad-slider-dots{position:absolute;inset:auto 0 10px;display:flex;justify-content:center;gap:7px;direction:ltr}
+.ad-slider-dot{width:8px;height:8px;padding:0;border:0;border-radius:50%;background:rgba(255,255,255,.65);box-shadow:0 1px 5px #3335;cursor:pointer}
+.ad-slider-dot[aria-current="true"]{width:21px;border-radius:99px;background:#fff}
+.ad-slider-arrow{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;border:0;border-radius:50%;background:#ffffffd9;color:var(--brand);font-size:22px;font-weight:900;display:grid;place-items:center;cursor:pointer}
+.ad-slider-prev{left:10px}.ad-slider-next{right:10px}
+@media(max-width:600px){.ad-slider{margin:13px auto 19px;border-radius:13px}.ad-slider-dots{bottom:6px}.ad-slider-arrow{width:30px;height:30px;font-size:19px}.ad-slider-prev{left:7px}.ad-slider-next{right:7px}}
+@media(prefers-reduced-motion:reduce){.ad-slider-track{transition:none}}
+
 @media(max-width:900px){.container{width:calc(100% - 30px)}.hero{padding:42px 0 29px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.card{padding:17px}.app-icon{width:64px;height:64px;flex-basis:64px}}
 @media(max-width:600px){
 .container{width:calc(100% - 24px)}.nav{min-height:62px;gap:8px}.logo{font-size:23px}.nav-link{font-size:12px;padding:8px 11px}
@@ -40,6 +54,22 @@ main{padding-top:4px;padding-bottom:28px}.category{margin:23px 0 29px}.heading{f
 <p>قم بتحميل تطبيقات متاجر عملائنا المميزة وابدأ بالتسوق أونلاين مباشرة.</p>
 <nav class="categories" aria-label="تصنيفات المتاجر"><a href="#groceries">بقالات</a><a href="#perfumes">ملابس واحزية وعطور</a><a href="#electronics">محلات إلكترونيات</a><a href="#restaurants">مطاعم</a><a href="#other">متاجر أخرى</a></nav>
 </div></section>
+<section class="container" aria-label="الإعلانات والعروض">
+  <div class="ad-slider" id="adSlider" aria-roledescription="carousel" aria-label="إعلانات المتاجر">
+    <div class="ad-slider-track" id="adSliderTrack">
+      <a class="ad-slide" href="#groceries" aria-label="الإعلان الأول"><img src="slider/slider1.jpg" alt="إعلان المتجر الأول" loading="eager"></a>
+      <a class="ad-slide" href="#perfumes" aria-label="الإعلان الثاني"><img src="slider/slider2.jpg" alt="إعلان المتجر الثاني" loading="lazy"></a>
+      <a class="ad-slide" href="#electronics" aria-label="الإعلان الثالث"><img src="slider/slider3.jpg" alt="إعلان المتجر الثالث" loading="lazy"></a>
+    </div>
+    <button class="ad-slider-arrow ad-slider-prev" type="button" aria-label="الإعلان السابق">‹</button>
+    <button class="ad-slider-arrow ad-slider-next" type="button" aria-label="الإعلان التالي">›</button>
+    <div class="ad-slider-dots" aria-label="اختيار الإعلان">
+      <button class="ad-slider-dot" type="button" aria-label="الإعلان الأول" aria-current="true"></button>
+      <button class="ad-slider-dot" type="button" aria-label="الإعلان الثاني" aria-current="false"></button>
+      <button class="ad-slider-dot" type="button" aria-label="الإعلان الثالث" aria-current="false"></button>
+    </div>
+  </div>
+</section>
 <main class="container">
 <!-- البنية: section.category = قسم رئيسي/تصنيف. article.card = كرت متجر أو تطبيق داخل التصنيف. لإضافة متجر انسخ كرت article.card داخل grid للتصنيف المناسب، ثم حدّث src للأيقونة والاسم والوصف ورابط href فقط. -->
 <section class="category" id="groceries"><h2 class="heading">البقالات والمواد الغذائية</h2><p class="section-desc">تسوّق احتياجاتك اليومية من متاجر كافي.</p><div class="grid">
@@ -65,4 +95,34 @@ main{padding-top:4px;padding-bottom:28px}.category{margin:23px 0 29px}.heading{f
 <section class="cta"><h2>احصل على متجرك وتطبيقك الآن</h2><p>أنشئ متجرك الإلكتروني عبر كافي، واعرض منتجاتك لعملائك وابدأ استقبال الطلبات أونلاين.</p><a class="button" href="https://www.kaffii-sd.com" target="_blank" rel="noopener">اضغط للخصول علي تطبيقك</a></section>
 </main>
 <footer>© كافي — متاجر إلكترونية وتجربة تسوّق أسهل.</footer>
+
+<script>
+(() => {
+  const slider = document.getElementById('adSlider');
+  if (!slider) return;
+  const track = document.getElementById('adSliderTrack');
+  const slides = Array.from(track.querySelectorAll('.ad-slide'));
+  const dots = Array.from(slider.querySelectorAll('.ad-slider-dot'));
+  const prev = slider.querySelector('.ad-slider-prev');
+  const next = slider.querySelector('.ad-slider-next');
+  let index = 0, timer;
+  const show = n => {
+    index = (n + slides.length) % slides.length;
+    track.style.transform = `translateX(-${index * 100}%)`;
+    dots.forEach((dot, i) => dot.setAttribute('aria-current', String(i === index)));
+  };
+  const stop = () => { if (timer) clearInterval(timer); };
+  const start = () => { stop(); timer = setInterval(() => show(index + 1), 4500); };
+  prev.addEventListener('click', () => { show(index - 1); start(); });
+  next.addEventListener('click', () => { show(index + 1); start(); });
+  dots.forEach((dot, i) => dot.addEventListener('click', () => { show(i); start(); }));
+  slider.addEventListener('mouseenter', stop);
+  slider.addEventListener('mouseleave', start);
+  slider.addEventListener('focusin', stop);
+  slider.addEventListener('focusout', start);
+  document.addEventListener('visibilitychange', () => document.hidden ? stop() : start());
+  show(0); start();
+})();
+</script>
+
 </body></html>
